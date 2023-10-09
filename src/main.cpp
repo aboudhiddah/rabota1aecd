@@ -1,6 +1,5 @@
 #include <iostream>
 #include "ex_lin_list.h"
-#include <math.h>
 
 #include <time.h>
 #include <fstream>
