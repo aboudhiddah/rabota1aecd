@@ -45,6 +45,7 @@ void ex_lin_list::del_val(int index){
     for (int i = index; i + 1 < current_bl->bl_end; i++)
         current_bl->bl[i] = current_bl->bl[i + 1];
     current_bl->bl_end--;
+    list_size--;
 }
 
 void ex_lin_list::insert_val(int index, int val){
