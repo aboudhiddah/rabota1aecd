@@ -6,8 +6,6 @@
 #include <fstream>
 #include <string>
 
-#include "list.cpp"
-
 using namespace std;
 
 void check(int* arr_1, int n_1, int arr_2, int n_2, int n_array);
