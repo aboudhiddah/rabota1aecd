@@ -47,6 +47,7 @@ void ex_lin_list::del_val(int index){
     for (int i = index; i + 1 < current_bl->bl_end; i++)
         current_bl->bl[i] = current_bl->bl[i + 1];
     current_bl->bl_end--;
+    list_size--;
 }
 
 void ex_lin_list::insert_val(int index, int val){
@@ -94,127 +95,6 @@ void ex_lin_list::write_out(){
             std::cout << current_bl->bl[i] << " ";
         //std::cout << "| ";
         current_bl = current_bl->next;
-    }
-}
-
-int* ex_lin_list::Array(int &n){
-    n = list_size;
-    int* arr = new int[n];
-
-    int index = 0;
-    class block* current_bl = first;
-    while (current_bl != nullptr){
-        for (int i = 0; i < current_bl->bl_end; i++){
-            arr[index] = current_bl->bl[i];
-            index++;
-        }
-        current_bl = current_bl->next;
-    }
-
-    return arr;
-}
-
-std::unordered_map <int, int> ex_lin_list::dict(){
-    std::unordered_map <int, int> mp;
-
-    class block* current_bl = first;
-    while (current_bl != nullptr){
-        for (int i = 0; i < current_bl->bl_end; i++){
-            mp[current_bl->bl[i]]++;
-        }
-        current_bl = current_bl->next;
-    }
-
-    return mp;
-}
-
-int* ex_lin_list::to_set(int &n){
-    std::unordered_map <int, int> mp = dict();
-
-    auto it = mp.begin();
-    n = mp.size();
-    int* new_set = new int[n];
-
-    int index = 0;
-    while (it != mp.end()){
-        new_set[index] = it->first;
-        index++;
-        it++;
-    }
-
-    return new_set;
-}
-
-void ex_lin_list::maximize(int n){
-    std::unordered_map <int, int> mp = dict();
-
-    class block* current_bl = first;
-    int index = 0;
-    while (current_bl != nullptr){
-        for (int i = 0; i < current_bl->bl_end; i++){
-            if (mp.find(current_bl->bl[i])->second < n){
-                del_val(index);
-                i--;
-            }
-            else
-                index++;
-        }
-        current_bl = current_bl->next;
-    }
-}
-
-void ex_lin_list::remove_copies(){
-    std::unordered_map <int, int> mp;
-
-    class block* current_bl = first;
-    int index = 0;
-    while (current_bl != nullptr){
-        for (int i = 0; i < current_bl->bl_end; i++){
-            if (mp.find(current_bl->bl[i]) != mp.end()){
-                del_val(index);
-                i--;
-            }
-            else {
-                index++;
-                mp[current_bl->bl[i]] = 1;
-            }
-        }
-        current_bl = current_bl->next;
-    }
-}
-
-void ex_lin_list::duplicate(){
-
-    class block* current_bl = first;
-    int index = 0;
-    while (current_bl != nullptr){
-        for (int i = 0; i < current_bl->bl_end; i++){
-            if (current_bl->bl[i] <= 0){
-                del_val(index);
-                i--;
-            }
-            else {
-                index++;
-            }
-        }
-        current_bl = current_bl->next;
-    }
-
-
-    std::vector <int> vc;
-    current_bl = first;
-    while (current_bl != nullptr){
-        for (int i = 0; i < current_bl->bl_end; i++){
-            vc.push_back(current_bl->bl[i]);
-        }
-        current_bl = current_bl->next;
-    }
-
-    for (int i = vc.size() - 1; i >= 0; i--){
-        for (int j = 0; j < vc[i] - 1; j++)
-            insert_val(i + 1 + j, vc[i]);
-        //std::cout << "\n";
-        //write_out();
     }
 }
 

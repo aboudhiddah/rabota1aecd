@@ -16,11 +16,5 @@ class ex_lin_list{
         void del_val(int index);
         void insert_val(int index, int val);
         void write_out();
-        int* Array(int &n);
-        std::unordered_map <int, int> dict();
-        int* to_set(int &n);
-        void maximize(int n);
-        void remove_copies();
-        void duplicate();
         ~ex_lin_list();
 };
